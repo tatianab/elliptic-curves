@@ -1,9 +1,9 @@
 ## /file primepoint.py
 ## /author Tatiana Bradley
-## /brief Implementation of the PrimePoint class. Example change
+## /brief Implementation of the PrimePoint class
 
-from primecurve import *
 from primefieldelement import *
+from primecurve import *
 
 class PrimePoint:
 
@@ -22,9 +22,13 @@ class PrimePoint:
     # CONSTRUCTOR
 
     def __init__(self, x, y, curve):
-        self.x = PrimeFieldElement(x, curve.prime)
-        self.y = PrimeFieldElement(y, curve.prime)
-        self.curve = curve
+        if (x == y == curve == None):
+            self.type = "INF"
+        else:
+            self.x = PrimeFieldElement(x, curve.prime)
+            self.y = PrimeFieldElement(y, curve.prime)
+            self.curve = curve
+            self.type = "NORMAL"
 
     @classmethod
     def fromElements(cls, x, y, curve):
@@ -34,19 +38,19 @@ class PrimePoint:
 
     def __repr__(self):
         if (self.isInf()):
-            return "(INF)"
+            return "(" + self.type + ")"
         return "(" + str(self.x) + ", " + str(self.y) + ")"
 
     # HANDLING INFINITY
     
     @classmethod
-    def infinity(cls):
-        curve = PrimeCurve.default()
+    def inf(cls):
+        #curve = PrimeCurve.default()
         coord = PrimeFieldElement.default()
-        return cls.fromElements(coord,coord,curve)
+        return cls(None, None, None)
 
     def isInf(self):
-        return (self.x.isDefault() and self.y.isDefault())
+        return self.type == "INF"
 
     # BINARY OPERATORS
 
@@ -56,7 +60,7 @@ class PrimePoint:
         elif (other.isInf()):
             return self
         elif (self == -other):
-            return PrimePoint.INF
+            return self.inf()
         elif (self == other):
             return self.double()
         else:
@@ -70,7 +74,7 @@ class PrimePoint:
 
     def __mul__(self, multiplier):
         binString = bin(multiplier)
-        Q = self.INF
+        Q = self.inf()
         for char in binString:
             Q = Q.double()
             if char == "1":
@@ -81,12 +85,12 @@ class PrimePoint:
 
     def __neg__(self):
         if (self.isInf()):
-            return self.INF
+            return self.inf()
         return PrimePoint.fromElements(self.x, -self.y, self.curve)
 
     def double(self):
         if (self.isInf()):
-            return self.INF
+            return self.inf()
         else:
             intermedCalc = ((self.x ** 2)*3 + self.curve.a) / (self.y*2)
 
@@ -104,5 +108,8 @@ class PrimePoint:
         else:
             return (self.x == other.x and self.y == other.y)
 
-## CONSTANTS:
-PrimePoint.INF = PrimePoint.infinity()
+    # OTHER FUNCTIONS
+
+    # True if this point satisfies the curve it is on
+    def onCurve(self):
+        return curve.onCurve(self.x, self.y)

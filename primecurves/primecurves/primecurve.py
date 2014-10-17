@@ -46,7 +46,7 @@ class PrimeCurve:
 
     # OTHER FUNCTIONS
     
-    " Check if (x,y) falls on this curve.
+    """ Check if (x,y) falls on this curve. """
     def onCurve(self, x, y):
         x = PrimeFieldElement(x, self.prime)
         y = PrimeFieldElement(y, self.prime)
@@ -54,7 +54,7 @@ class PrimeCurve:
         rhs = x ** 3 + x * self.a + self.b
         return (lhs == rhs)
     
-    " Get a 'random' point on the curve.
+    """ Get a 'random' point on the curve. """
     def getPoint(self):
         found = False
         while (not found):
@@ -63,16 +63,16 @@ class PrimeCurve:
                 if (self.onCurve(x, y)):
                     return PrimePoint(x, y, self)
 
-    " Get all the points on a curve.
-    " Only for small groups!
+    """ Get all the points on a curve.
+    " Only for small groups! """
     def getAllPoints(self):
         for x in range(self.prime):
             for y in range(self.prime):
                 if (self.onCurve(x, y)):
                     self.allPoints += [ PrimePoint(x, y, self) ]
 
-    " Get the number of points on a curve.
-    " NOTE: not fully implemented!
+    """ Get the number of points on a curve.
+    " NOTE: not fully implemented! """
     def getOrder(self):
         if self.order is None:
             if len(self.allPoints) > 1:

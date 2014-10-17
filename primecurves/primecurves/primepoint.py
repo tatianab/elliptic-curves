@@ -114,6 +114,6 @@ class PrimePoint:
 
     # OTHER FUNCTIONS
 
-    " True if this point satisfies its curve.
+    """ True if this point satisfies its curve. """
     def onCurve(self):
         return curve.onCurve(self.x, self.y)

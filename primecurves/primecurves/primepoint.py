@@ -1,6 +1,9 @@
-## /file primepoint.py
-## /author Tatiana Bradley
-## /brief Implementation of the PrimePoint class
+"""
+" /file primepoint.py
+" /author Tatiana Bradley
+" /brief Implementation of the PrimePoint class, which
+"        represents a point (x,y) on an elliptic curve over a prime field.
+"""
 
 from primefieldelement import *
 from primecurve import *
@@ -8,15 +11,12 @@ from primecurve import *
 class PrimePoint:
 
     """
-    " A class representing a point on an elliptic
-    " curve 
-    """
-
-    """
+    " A class representing a point on an elliptic curve.
+    "
     " DATA:
-    " int x - the x coordinate
-    " int y - the y coordinate
-    " PrimeCurve curve - the underlying prime curve
+    " x (PrimeFieldElement) - The x coordinate
+    " y (PrimeFieldElement) - The y coordinate
+    " curve (PrimeCurve)    - The underlying prime curve
     """
 
     # CONSTRUCTOR
@@ -42,7 +42,11 @@ class PrimePoint:
         return "(" + str(self.x) + ", " + str(self.y) + ")"
 
     # HANDLING INFINITY
-    
+
+    """
+    " Constructor for the point at infinity,
+    " which is the identity.
+    """
     @classmethod
     def inf(cls):
         #curve = PrimeCurve.default()
@@ -110,6 +114,6 @@ class PrimePoint:
 
     # OTHER FUNCTIONS
 
-    # True if this point satisfies the curve it is on
+    " True if this point satisfies its curve.
     def onCurve(self):
         return curve.onCurve(self.x, self.y)

@@ -1,12 +1,18 @@
-## Prime Curves Examples
+"""
+ /file examples.py
+ /brief Some examples of curves, points and elements to play with.
+"""
+
 from primecurves import *
 
-## EXAMPLES
+# A curve over a small prime field, and two points on
+# that curve.
 E = PrimeCurve(4, 20, 29)
 P = PrimePoint(5, 22, E)
 Q = PrimePoint(16, 27, E)
-E.getAllPoints()
+E.getAllPoints() # try getting all the points!
 
+# An example that doesn't satisfy the curve.
 NotAPoint = PrimePoint(1, 0, E)
 
 A = PrimeFieldElement(3, 5)
@@ -15,11 +21,11 @@ EC = PrimeCurve(2,3,5)
 P1 = PrimePoint.fromElements(A, B, EC)
 A = E.getPoint()
 
+# A curve with many more points
 mod = 7919
 E2 = PrimeCurve(1001, 75, mod)
 P1 = PrimePoint(4023, 6036, E2)
 Q1 = PrimePoint(4135, 3169, E2)
-
 K = PrimePoint(1974, 2248, E2)
 
-INF = PrimePoint.inf() # testing the point at infinity
+INF = PrimePoint.inf() # the point at infinity

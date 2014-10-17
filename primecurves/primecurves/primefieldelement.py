@@ -1,17 +1,22 @@
-## /file primefieldelement.py
-## /author Tatiana Bradley
-## /brief Implementation of the PrimeFieldElement class
+"""
+" /file primefieldelement.py
+" /author Tatiana Bradley
+" /brief Implementation of the PrimeFieldElement class.
+"""
 
 from random import randrange
 
 class PrimeFieldElement:
     """
     A class representing elements of a prime field.
-    """
+    In other words, the integers mod a prime.
 
-##    DATA MEMBERS: 
-##    int value
-##    int prime
+    DATA:
+    value (int) - The element's value.
+                  Will satisfy 0 <= value < prime.
+    prime (int) - The prime modulus.
+    
+    """
 
     # CONSTRUCTORS
     def __init__(self, value, prime):
@@ -41,6 +46,7 @@ class PrimeFieldElement:
         other = self.toPFE(other)
         return cmp(self.value, other.value)
 
+    " Determines if two PFE's are in the same field.
     def sameField(self, other):
         return ( self.prime == other.prime )
 
@@ -48,11 +54,13 @@ class PrimeFieldElement:
         return (self.prime == 0)
 
     # BINARY OPERATORS
+    " Add two PFE's and return the result.
     def __add__(self, other):
         other = self.toPFE(other)
         return PrimeFieldElement(self.value + other.value,
                                      self.prime)
 
+    " Subtract another PFE from self and return the result.
     def __sub__(self, other):
         other = self.toPFE(other)
         return PrimeFieldElement(self.value - other.value,
@@ -73,9 +81,12 @@ class PrimeFieldElement:
         return self * other.inverse()
 
     # UNARY OPERATORS
+    
+    " Additive inverse
     def __neg__(self):
         return PrimeFieldElement( -self.value, self.prime )
 
+    " Multiplicative inverse
     def inverse(self):
         
         u = self.value
@@ -98,6 +109,8 @@ class PrimeFieldElement:
 
     # OTHER FUNCTIONS
 
+    " Helper. Convert an int or long to a PFE,
+    " or print an error.
     def toPFE(self, other):
         if isinstance(other, (int, long)):
             return PrimeFieldElement(other, self.prime)

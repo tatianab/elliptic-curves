@@ -1,6 +1,6 @@
 ## /file primepoint.py
 ## /author Tatiana Bradley
-## /brief Implementation of the PrimePoint class
+## /brief Implementation of the PrimePoint class. Example change
 
 from primecurve import *
 from primefieldelement import *

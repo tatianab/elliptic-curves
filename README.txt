@@ -22,7 +22,8 @@ ECDLP = elliptic curve discrete log problem
       traceone          - compute ECDLP on curves of trace one  // TODO!
       
    Other stuff:
-      numbertheory      - a few helpful algorithms from number theory: gcd, successive squaring, etc.
+      numbertheory      - a few helpful algorithms from number theory: 
+                          gcd, successive squaring, etc.
       
       
       

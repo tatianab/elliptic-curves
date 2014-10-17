@@ -7,6 +7,7 @@ from random import randrange
 from primefieldelement import *
 from primecurve import *
 from primepoint import *
+from padic import *
 
 # HELPERS
 from timer import *
@@ -14,3 +15,4 @@ from timer import *
 # ALGORITHMS
 from pollardsrho import *
 from bruteforcelog import *
+from numbertheory import *

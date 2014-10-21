@@ -13,8 +13,9 @@ from bitstring import *
 import hashlib
 
 BITS_IN_BYTE = 8
-hashFunction = hashlib.sha256
-HASH_LENGTH = hashFunction().digest_size * BITS_IN_BYTE
+hashFunction = hashlib.sha256                           # The hash function to use. (SHA-256)
+HASH_LENGTH = hashFunction().digest_size * BITS_IN_BYTE # The length of the hash function
+                                                        # digest, in bits.
 
 """
 " generateRandomCurve()
@@ -64,7 +65,6 @@ def generateRandomCurve(prime):
     return seed, PrimeCurve(a, b, prime)
     
     
-
 """ HELPER FUNCTIONS """
 
 """

@@ -37,6 +37,3 @@ two   = PrimeFieldElement(2, 5)
 three = PrimeFieldElement(3, 5)
 four  = PrimeFieldElement(4, 5)
 
-def runTest(r, a, b):
-    return r * (a ** 2) == b ** 3
-

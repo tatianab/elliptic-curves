@@ -30,9 +30,6 @@ def drawPoint(x, y):
     goto(xPos, yPos)
     pendown()
     dot()
-##    fill(True)
-##    circle(POINT_RADIUS)
-##    fill(False)
     penup()
 
 def toOrigin():

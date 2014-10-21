@@ -23,22 +23,22 @@ hideturtle()
 speed(0)
 
 # FUNCTIONS
-def drawPoint(x, y):
+def drawPoint(x, y, color = "black"):
     xPos = START_X + x * SCALE
     yPos = START_Y + y * SCALE 
     penup()
     goto(xPos, yPos)
     pendown()
-    dot()
+    dot(color)
     penup()
 
 def toOrigin():
     penup()
     goto(START_X, START_Y)
 
-def drawPrimePoint(point):
+def drawPrimePoint(point, color = "black"):
     if not point.isInf():
-        drawPoint(point.x.value, point.y.value)
+        drawPoint(point.x.value, point.y.value, color)
 
 def drawAxes(prime):
     toOrigin()
@@ -90,6 +90,9 @@ def drawYAxis(end):
 def drawListOfPoints(points):
     for point in points:
         drawPrimePoint(point)
+
+def highlightPoint(point):
+    drawPrimePoint(point, "blue")
     
 
 # COMMANDS
@@ -98,6 +101,7 @@ Seed, E = generateRandomCurve(PRIME)
 E.getAllPoints()
 drawAxes(E.prime)
 drawListOfPoints(E.allPoints)
+highlightPoint(E.allPoints[3])
     
 # Exit on click
 exitonclick()

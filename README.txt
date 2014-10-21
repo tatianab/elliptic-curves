@@ -1,8 +1,7 @@
 elliptic-curves
 ===============
 Play with elliptic curves!
-A senior thesis project, Fall 2014.
-Feel free to use this code in any way you see fit.
+A senior thesis project, Fall 2014 - Spring 2015.
 
 Terms:
 ECDLP = elliptic curve discrete log problem
@@ -18,12 +17,15 @@ ECDLP = elliptic curve discrete log problem
       
    Algorithms:
       bruteforcelog     - compute ECDLP by brute force (enumeration)
-      pollardsrho       - compute ECDLP by Pollard's rho algorithm
+      pollardsrho       - compute ECDLP by Pollard's rho algorithm - more TODO
+                          (currently only an implementation for Z/pZ)
       traceone          - compute ECDLP on curves of trace one  // TODO!
       
    Other stuff:
       numbertheory      - a few helpful algorithms from number theory: 
                           gcd, successive squaring, etc.
+      turtlevisuals     - visualize elliptic curves over prime fields using 
+                          Python's Turtle graphics.
       
       
       

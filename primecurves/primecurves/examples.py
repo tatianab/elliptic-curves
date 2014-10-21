@@ -29,3 +29,14 @@ Q1 = PrimePoint(4135, 3169, E2)
 K = PrimePoint(1974, 2248, E2)
 
 INF = PrimePoint.inf() # the point at infinity
+
+# Some PrimeFieldElements
+zero  = PrimeFieldElement(0, 5)
+one   = PrimeFieldElement(1, 5)
+two   = PrimeFieldElement(2, 5)
+three = PrimeFieldElement(3, 5)
+four  = PrimeFieldElement(4, 5)
+
+def runTest(r, a, b):
+    return r * (a ** 2) == b ** 3
+

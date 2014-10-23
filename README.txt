@@ -7,9 +7,10 @@ Terms:
 ECDLP = elliptic curve discrete log problem
 
    setup.py
-   To install package, download the folder, then navigate to (outer) primecurves directory. Type
+   To install package, download the folder, then navigate to (outer) primecurves 
+   directory in the command prompt. Type:
       python setup.py install
-      Then, if you want to edit on your computer (and have changes show up) type:
+   Then, if you want to edit on your computer (and have changes show up) type:
       python setup.py develop
 
 -- /primecurves

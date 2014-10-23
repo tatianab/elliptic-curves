@@ -14,6 +14,7 @@ ECDLP = elliptic curve discrete log problem
       PrimePoint        - point on an elliptic curve
       PrimeFieldElement - element of a prime field F_p, i.e., an integer mod p
       PAdic             - p-adic rational number (in Q_p)       // TODO!
+      Weierstrass       - Weierstrass form of an elliptic curve, used to compute lifts
       
    Algorithms:
       bruteforcelog     - compute ECDLP by brute force (enumeration)
@@ -26,6 +27,9 @@ ECDLP = elliptic curve discrete log problem
                           gcd, successive squaring, etc.
       turtlevisuals     - visualize elliptic curves over prime fields using 
                           Python's Turtle graphics.
+
+   -- /images
+      Contains screenshots and other visuals.
       
       
       

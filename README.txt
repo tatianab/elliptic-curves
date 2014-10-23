@@ -6,6 +6,12 @@ A senior thesis project, Fall 2014 - Spring 2015.
 Terms:
 ECDLP = elliptic curve discrete log problem
 
+   setup.py
+   To install package, download the folder, then navigate to (outer) primecurves directory. Type
+      python setup.py install
+      Then, if you want to edit on your computer (and have changes show up) type:
+      python setup.py develop
+
 -- /primecurves
    A python package. All things related to elliptic curves over prime fields (Z/pZ).
    

@@ -111,6 +111,9 @@ def drawRandomCurve(prime):
     drawAxes(E.prime)
     drawListOfPoints(E.allPoints)
 
+""" Draw the example from Smart's
+    paper. Note that there is
+    a change of variables... """
 def drawSmartCurve():
     E = PrimeCurve(17, 36, 43)
     E.getAllPoints()

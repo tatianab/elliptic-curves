@@ -126,4 +126,12 @@ class PrimePoint:
         for i in range(1, end + 1):
             multiples += [ self * i ]
         return multiples
+
+    def computeLift(self):
+        h1 = - ( y**2 - x ** 3 - self.a * x - self.b ) / ( (2 * y) * E.prime )
+        # WON'T WORK. NEED TO DIVIDE BY P before modding out!
+        newX = self.x
+        newY = [ self.y, h1 ]
+        return newX, newY
+        
             

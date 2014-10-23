@@ -129,7 +129,8 @@ def drawSmartCurve():
 
 # COMMANDS
 toOrigin()
-drawSmartCurve()
+#drawSmartCurve()
+drawRandomCurve(PRIME)
     
 # Exit on click
 exitonclick()

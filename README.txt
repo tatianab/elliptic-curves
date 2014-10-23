@@ -14,6 +14,7 @@ ECDLP = elliptic curve discrete log problem
       python setup.py develop
 
 -- /primecurves
+   PYTHON VERSION: 2.7.6
    A python package. All things related to elliptic curves over prime fields (Z/pZ).
    
    Structures:

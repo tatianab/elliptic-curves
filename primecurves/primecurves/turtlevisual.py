@@ -20,14 +20,11 @@ TICK_LENGTH = 10
 
 # Prelim commands
 hideturtle()
-speed(0)
+speed(5)
 
 # FUNCTIONS
 def drawPoint(x, y, color = "black"):
-    xPos = START_X + x * SCALE
-    yPos = START_Y + y * SCALE 
-    penup()
-    goto(xPos, yPos)
+    gotoPoint(x, y)
     pendown()
     dot(color)
     penup()
@@ -35,6 +32,12 @@ def drawPoint(x, y, color = "black"):
 def toOrigin():
     penup()
     goto(START_X, START_Y)
+
+def gotoPoint(x, y):
+    xPos = START_X + x * SCALE
+    yPos = START_Y + y * SCALE 
+    penup()
+    goto(xPos, yPos)
 
 def drawPrimePoint(point, color = "black"):
     if not point.isInf():
@@ -91,17 +94,39 @@ def drawListOfPoints(points):
     for point in points:
         drawPrimePoint(point)
 
-def highlightPoint(point):
-    drawPrimePoint(point, "blue")
+def labelPoint(point, label):
+    if not point.isInf():
+        gotoPoint(point.x.value + .5, point.y.value)
+        pd()
+        write(str(label))
+        pu()
+
+def highlightPoint(point, index):
+    drawPrimePoint(point, "red")
+    labelPoint(point, index)
+
+def drawRandomCurve(prime):
+    Seed, E = generateRandomCurve(prime)
+    E.getAllPoints()
+    drawAxes(E.prime)
+    drawListOfPoints(E.allPoints)
+
+def drawSmartCurve():
+    E = PrimeCurve(17, 36, 43)
+    E.getAllPoints()
+    P = PrimePoint(38, 16, E)
+    drawAxes(E.prime)
+    drawListOfPoints(E.allPoints)
+    multiples = P.getMultiples(16)
+    for i in range(len(multiples)):
+        point = multiples[i]
+        highlightPoint(point, i)
+    print E.getOrder()
     
 
 # COMMANDS
 toOrigin()
-Seed, E = generateRandomCurve(PRIME)
-E.getAllPoints()
-drawAxes(E.prime)
-drawListOfPoints(E.allPoints)
-highlightPoint(E.allPoints[3])
+drawSmartCurve()
     
 # Exit on click
 exitonclick()

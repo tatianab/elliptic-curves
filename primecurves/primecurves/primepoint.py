@@ -117,3 +117,13 @@ class PrimePoint:
     """ True if this point satisfies its curve. """
     def onCurve(self):
         return curve.onCurve(self.x, self.y)
+
+    """ Get a list of multiples of self,
+        up to and including P * end (an integer)
+    """
+    def getMultiples(self, end):
+        multiples = [ PrimePoint.inf() ]
+        for i in range(1, end + 1):
+            multiples += [ self * i ]
+        return multiples
+            

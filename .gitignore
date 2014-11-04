@@ -13,3 +13,9 @@ primecurves/primecurves.egg-info/not-zip-safe
 primecurves/primecurves.egg-info/PKG-INFO
 primecurves/primecurves.egg-info/SOURCES.txt
 primecurves/primecurves.egg-info/top_level.txt
+*.log
+*.aux
+*.bbl
+*.blg
+*.gz
+*.toc

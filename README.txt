@@ -12,6 +12,9 @@ ECDLP = elliptic curve discrete log problem
       python setup.py install
    Then, if you want to edit on your computer (and have changes show up) type:
       python setup.py develop
+      
+-- /latex
+   The written part of my thesis.
 
 -- /primecurves
    PYTHON VERSION: 2.7.6

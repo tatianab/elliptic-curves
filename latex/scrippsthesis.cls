@@ -69,7 +69,7 @@
 
 
 %%% Load the book class with some default options.
-\LoadClass[11pt,openright]{book}
+\LoadClass[11pt,openright, oneside]{book}
 
 
 %%% Include local configuration file, if any.
@@ -90,7 +90,8 @@
 
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
-  \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+ \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+ % \fancyhead[LE]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
   \fancyhead[RE]{\chaptername\ \thechapter}
   \fancyhead[LO]{Section \thesection}
   \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
@@ -122,7 +123,8 @@
 
 \fancypagestyle{front}{%
   \fancyhf{} %% Clear all headers and footers.
-  \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+ % \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+\fancyhead[RE]{\nouppercase\leftmark\hspace{1em}\textbf{\thepage}}
   \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
 }
 
@@ -130,7 +132,6 @@
 
 
 %%% Define the layout of the title page.
-\newcommand\test
 
 \newcommand{\@sigline}{\vspace{2ex}\hbox to \textwidth{\hrulefill}\hfill}
 

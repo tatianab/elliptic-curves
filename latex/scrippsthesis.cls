@@ -90,8 +90,8 @@
 
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
- \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
- % \fancyhead[LE]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
+ %\fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+  \fancyhead[LE]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
   \fancyhead[RE]{\chaptername\ \thechapter}
   \fancyhead[LO]{Section \thesection}
   \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
@@ -123,9 +123,9 @@
 
 \fancypagestyle{front}{%
   \fancyhf{} %% Clear all headers and footers.
- % \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
-\fancyhead[RE]{\nouppercase\leftmark\hspace{1em}\textbf{\thepage}}
-  \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
+  \fancyhead[LO]{\nouppercase\leftmark}
+  %\fancyhead[RE]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
+  \fancyhead[RO]{\nouppercase\rightmark \hspace{1em}\textbf{\thepage}}
 }
 
 

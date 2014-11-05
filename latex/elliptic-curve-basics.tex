@@ -1,0 +1,29 @@
+\chapter{Elliptic Curve Basics}%
+\label{sec:elliptic-curves}
+
+% Weierstrass equation
+\begin{defn}
+Let $K$ be a field. An $\textbf{elliptic curve $E$ over $K$}$ is defined by an equation:
+$$E : y^2 + a_1xy + a_3y = x^3 + a_2x^2 + a_4x + a_6$$
+where $a_1, a_2, a_3, a_4, a_6 \in K$ and the $\textbf{discriminant}$ $\Delta$ is non-zero. This equation is called a $\textbf{Weierstrass equation}$.
+\end{defn}
+
+% L-rational points
+\begin{defn}
+With $K$ and $E$ defined as above, the set of $\textbf{L-rational points}$ on $E$ for any extension $L$ of $K$ is the set of pairs $(x, y) \in L \times L$ that
+satisfy $E$, together with $\OO$, the point at infinity.
+
+The set of L-rational points is denoted $E(L)$.
+\end{defn}
+
+% Trace of Frobenius
+\begin{defn}
+Let $E$ be an elliptic curve over a finite field $\finfield$. The $\textbf{trace of Frobenius}$ t is defined by:
+$$ \#E(\finfield) = q + 1 - t, $$
+where $\#E(\finfield)$ is the number of elements in $E(\finfield)$.
+\end{defn}
+
+\begin{rmk}
+The trace of Frobenius is equal to one if and only if $E(\finfield)$ has exactly $q$ elements. This has important implications
+for cryptography, as we will see.
+\end{rmk}

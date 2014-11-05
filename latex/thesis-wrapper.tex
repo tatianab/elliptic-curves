@@ -8,8 +8,26 @@
 \advisor{Christopher Towse}
 \reader{Second Reader}
 
-%%%  END HEADER %%%
+%%% Including new commands and packages.
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
 
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\finfield}{\mathbb{F}_q}
+
+%%%  END HEADER %%%
 
 \begin{document}
 
@@ -43,6 +61,13 @@
 \mainmatter
 
 \include{intro}
+\include{elliptic-curve-basics}
+\include{formal-log}
+\include{p-adics}
+%\include{}
+%\include{}
+%\include{}
+%\include{}
 
 %%% End of the main matter.
 

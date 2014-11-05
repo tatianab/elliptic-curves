@@ -1,0 +1,35 @@
+\chapter{P-adic numbers}%
+\label{sec:p-adics}
+
+\section{The p-adics}
+
+\begin{defn}
+For a rational number $a$ and a prime number $p$, separate out all factors of $p$ from $a$ and write: $$ a = p^r \dfrac{m}{n} $$ where $r$, $m$ and $n$ are integers, and $p$ does not divide $m$ or $n$. The exponent $r$ is called the $\textbf{p-adic ordinal}$ of $a$, denoted $\text{ord}_p(a)$.
+\end{defn}
+
+% The absolute value
+\begin{defn}
+For a prime $p$, we define a function $|.|_p : \Q \to \Q_{\ge 0}$ where for $a \in \Q$:
+$$
+|a|_p = \left\{
+        \begin{array}{ll}
+            p^{-\text{ord}_p(a)} & \quad a \neq 0 \\
+            0 & \quad a = 0.
+        \end{array}
+    \right.
+$$
+The function $|.|_p$ is called the $\textbf{p-adic absolute value}$.
+\end{defn}
+
+\begin{prop}
+The p-adic absolute value is a norm on $\Q$, and induces a metric $$d_p(a, \ b) = | a - b |_p$$ for $a, b \in \Q$.
+\end{prop}
+
+\begin{defn}
+A p-adic number $a$ is called a $\textbf{p-adic integer}$ if $ord_p(a) \ge 0$. The set of all p-adic integers is
+denoted $\Z_p$.
+\end{defn}
+
+\begin{rmk}
+A p-adic integer is always of the form $$a_0 + a_1p + a_2p^2 + ... ,$$ i.e., all powers of $p$ are non-negative.
+\end{rmk}

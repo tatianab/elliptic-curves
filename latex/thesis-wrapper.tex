@@ -9,6 +9,9 @@
 \reader{Second Reader}
 
 %%% Including new commands and packages.
+
+% Allows for auto formatting of theorems,
+% definitions etc.
 \usepackage{amsthm}
 \newtheorem{thm}{Theorem}[chapter]
 \newtheorem{lem}[thm]{Lemma}
@@ -17,13 +20,26 @@
 
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
+\newtheorem*{ex}{Example}
 
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
+\newtheorem*{note}{Notation}
+\newtheorem*{pf}{Proof}
 
+% Data visualization tool.
+\usepackage{pgfplots}
+\pgfplotsset{width = 7cm, compat = 1.11}
+
+% Notes to self.
+\usepackage{todonotes}
+
+% Shortcuts (mostly for bolding).
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\finfield}{\mathbb{F}_q}
 
@@ -60,10 +76,12 @@
 %% MAIN MATTER - INCLUDE THE CHAPTERS.
 \mainmatter
 
-\include{intro}
-\include{elliptic-curve-basics}
-\include{formal-log}
-\include{p-adics}
+\listoftodos
+
+%\include{intro}
+% Background
+\include{math-bg}
+\include{smart-discussion}
 %\include{}
 %\include{}
 %\include{}
@@ -74,9 +92,9 @@
 \backmatter
 %%% BIBLIOGRAPHY
 
-\bibliography{bibliography}{}
-\bibliographystyle{plain}
-%\nocite{*} % For now, show everything in the bib file.
+\bibliography{bibliography}
+\bibliographystyle{alpha}
+\nocite{*} % For now, show everything in the bib file.
 
 \end{document}
 

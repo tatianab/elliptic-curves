@@ -37,3 +37,10 @@ two   = PrimeFieldElement(2, 5)
 three = PrimeFieldElement(3, 5)
 four  = PrimeFieldElement(4, 5)
 
+# Trying Monnerat's example
+E = PrimeCurve(373, 837, 1019)
+P = PrimePoint(293, 914, E)
+Q = PrimePoint(794, 329, E)
+print P.computeLift()
+print Q.computeLift()
+

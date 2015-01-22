@@ -19,3 +19,5 @@ primecurves/primecurves.egg-info/top_level.txt
 *.blg
 *.gz
 *.toc
+*.cpp
+*.hpp

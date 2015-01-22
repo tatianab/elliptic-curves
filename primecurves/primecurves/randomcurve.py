@@ -63,8 +63,15 @@ def generateRandomCurve(prime):
 
     # STEP 11
     return seed, PrimeCurve(a, b, prime)
-    
-    
+
+def generateTraceOne(prime):
+    for i in range(prime ** 2):
+        Seed, Curve = generateRandomCurve(prime)
+        Curve.getAllPoints()
+        if (Curve.getOrder() == prime):
+            return Curve
+    return "FAILURE"
+        
 """ HELPER FUNCTIONS """
 
 """

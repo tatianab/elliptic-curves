@@ -12,10 +12,13 @@ class PAdic:
 
       DATA:
       coeffs (array) - the coefficients of the number, truncated.
+      begin  (int)   - the starting power. (default is 0).
       """
 
-      def __init__(self, coeffs):
+      def __init__(self, coeffs, begin, prime):
             self.coeffs = coeffs
+            self.begin = begin
+            self.prime = prime
 
       def __repr__(self):
             result = ""

@@ -1,0 +1,71 @@
+\chapter{Discrete Logarithm on Elliptic Curves of Trace One}
+\label{sec:trace-one}
+
+In this section we will see that elliptic curves of trace one should not be used for cryptography, because there is a subexponential algorithm
+for solving the ECDLP in this case. This algorithm was initially proposed by Nigel Smart in ~\cite{smart}.
+
+Recall that if $E$ is an elliptic curve over a field $\F_q$, then having trace one means that:
+$$ \#E(\F_p) = p.$$
+In words, the number of group elements is the same as the number of elements in the
+underlying prime field.
+
+Throughout this section, we will work with a toy example so that the computations can be
+shown in full. 
+
+\begin{ex}[Setup]
+
+Let $E$ be defined over $F_7$ by the equation:
+$$ y^2 = x^3 + 6x + 5.$$
+This is an elliptic curve because the discriminant $\Delta = -16 (4 \cdot 6^3 + 27 \cdot 5^2) = -24624 \neq 0.$\footnote{The equation for the discriminant simplifies to
+$$\Delta = -16(4a^3 + 27b^2)$$
+for $E(K)$ with with char($K$)$\neq 2, 3$. Here char($\F_7$) = 7.} 
+
+\pagebreak
+
+The points satisfying $E$ are:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+$\OO$     & (2, 2) & (2, 5) & (3, 1) \\
+(3, 6) & (4, 3) & (4, 4). &        
+\end{tabular}
+\end{table}
+$E$ has $7$ points, so it has trace one.
+
+Now let $\tilde{P} = (2, 5)$ and $\tilde{Q} = (4, 3)$. Suppose we know that
+$$ [n]\tilde{P} = \tilde{Q} $$
+for some natural number $n$ (this is indeed the case). How can we solve the discrete log problem and determine $n$?
+\end{ex}
+
+We do not have a (known) direct way of computing logarithms in $\F_p$, but we do have a way in the $p$-adics $Q_p$.
+
+\begin{ex}[Computation of lifts]
+We compute the lifts of $\tilde{P}$ and $\tilde{Q}$ in $E(\F_7)$ to $P$ and $Q$  in $E(\Q_7)$. \\
+We know $\tilde{P} = (2, 5)$ and we want to solve for $P = (x, y)$.
+We choose $x = 2$. We want to solve for the first two coefficients $a_0$ and $a_1$ of the $p$-adic expansion of $y = a_0 + a_1p + ...$. Since $y$ must reduce
+to $5$, we let $a_0 = 5$.We use our formula for $a_1$:
+$$ a_1 = -\frac{f(2, 5)}{7 * (2*5)} = \frac{5^2 - 2^3 - 6*2- 5}{70} = 0 ? $$
+COMMENT : Is this wrong, or is it the anomalous case Smart mentioned?
+Using a similar method, we determine that $Q = $. TODO
+\end{ex}
+
+\begin{ex}[Scalar multiplication by $p$]
+We compute $[7]P$ and $[7]Q$.
+TODO
+%Since char($\Q_7$) = 0, we can use the simplified addition law introduced on page \pageref{sec:elliptic-curves}.
+\end{ex}
+
+\begin{rmk}
+$E_1(\Q_p)$ can be defined in this way as well. EXPLAIN WHY. \\
+QUESTION: $E_0(\Q_p)$ is the same as $E(\Q_p$?
+\end{rmk}
+
+\begin{defn}
+For $E$ an elliptic curve over $\Q_p$, we define $\hat{E}(p\Z_p)$ to be the set $p\Z_p$ with
+addition law:
+$$ x \oplus y = F(x, y) \mathrm{ \ for \ all  \ } x, y \in p\Z_p, $$
+where $F$ is the formal power series:
+$$ F(x, y) = x + y - ...$$ TODO : figure out what this is in the simplified case
+\end{defn}
+

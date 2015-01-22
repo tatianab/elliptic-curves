@@ -1,11 +1,17 @@
-\chapter{Elliptic Curve Basics}%
+%\chapter{Elliptic Curves}%
 \label{sec:elliptic-curves}
 
+\section{Introduction to Elliptic Curves}
 % Weierstrass equation
 \begin{defn}
 Let $K$ be a field. An $\textbf{elliptic curve $E$ over $K$}$ is defined by an equation:
 $$E : y^2 + a_1xy + a_3y = x^3 + a_2x^2 + a_4x + a_6$$
-where $a_1, a_2, a_3, a_4, a_6 \in K$ and the $\textbf{discriminant}$ $\Delta$ is non-zero. This equation is called a $\textbf{Weierstrass equation}$.
+where $a_1, a_2, a_3, a_4, a_6 \in K$ and the $\textbf{discriminant}$ $\Delta$\footnote{If you must know, $$\Delta = -d^2_2d_8 - 8d^3_4 - 27d_6^2 + 9d_2d_4d_6$$ } is non-zero. This equation is called a $\textbf{Weierstrass equation}$.
+
+When char$(K) \neq 2, 3$, we can change variables
+to arrive at the simplified Weierstrass equation:
+$$ E : y^2 = x^3 + ax + b $$
+where $a, b \in K$. 
 \end{defn}
 
 % L-rational points
@@ -15,6 +21,11 @@ satisfy $E$, together with $\OO$, the point at infinity.
 
 The set of L-rational points is denoted $E(L)$.
 \end{defn}
+
+An elliptic curve can be defined over any field $K$, but in cryptography we generally restrict $K$ to be a finite field $F_q$ where
+$q = p^n$, for $p$ prime and $n \in \Z_{>0}$. In this paper we will restrict ourselves even further to prime fields
+$\F_p$ where $p \neq 2, 3$, and to an infinite field $\Q_p$ (the $p$-adics), which have characteristic 0. This means we will always be able to use the
+simplified equation given in the first definition above.
 
 % Trace of Frobenius
 \begin{defn}
@@ -27,3 +38,76 @@ where $\#E(\finfield)$ is the number of elements in $E(\finfield)$.
 The trace of Frobenius is equal to one if and only if $E(\finfield)$ has exactly $q$ elements. This has important implications
 for cryptography, as we will see.
 \end{rmk}
+
+\subsection{The group law}
+\todo[inline, caption={Geometric group law}]{Describe geometric group law and how it motivates algebraic one. Possibly add
+figures to motivate this.}
+\begin{defn} Let $E(K)$ be an elliptic curve over a field $K$ with $char(K) \neq 2, 3$ defined by $y^3 =x^3  ax + b$ with point at infinity $\OO$. Let
+ $P = (x_P, y_P)$ and $Q = (x_Q, y_Q)$ be points on $E(K)$. Then:
+\begin{enumerate}
+\item(Identity.)
+$\OO + P = P$ and $P + \OO = P$.
+\item(Additive inverses.)
+The additive inverse of $P$, denoted $-P$, is in $E(K)$, and
+$P + (-P) = \OO$.
+\item{(Point Doubling.)}
+If P is not its own inverse, then $P + P = 2P = (x_{2P}, y_{2P})$ where
+$$x_{2P} = N^2 - 2 x_P, $$
+$$y_{2P} = N(x_P - x_{2P}) - y_P,$$
+$$N = \frac{3x_P^2 + a}{2y_P}.$$
+\item(Point Addition.)
+If  $P \neq Q$ and $P \neq -Q$ then
+$P + Q = R = (x_{R}, y_{R})$ where
+$$x_{R} = M^2 - x_P - x_Q,$$
+$$y_{R} = M * (x_P - x_{R}) - y_P,$$
+ $$M = \frac{y_Q - y_P}{x_Q - x_P}.$$
+
+\end{enumerate}
+
+\end{defn}$E(K)$ is an abelian group under this group law.
+\begin{note}
+Let $P$ be a point on an elliptic curve. We use the notation $[n]P$ to denote scalar multiplication of $P$ by a non-zero integer $n$. In other words, $$[n]P = P + P + ... + P \  \mathrm{(n \ times)}.$$
+\end{note}
+
+\subsection{Projective space and projective coordinates}
+
+
+\subsection{The Elliptic Curve Discrete Logarithm Problem}
+The interesting thing about elliptic curves with regards to cryptography
+is that their structure can be used to construct a "one-way" function.\footnote{In this case one-way is in quotes because the problem is only hard in
+certain cases, and there is no guarantee that there is not some clever way to render the
+general problem easy.}
+ A one-way function is one that is easy to perform but hard to undo (i.e., it is difficult to retrieve the input,
+given an output). 
+\begin{defn}[Elliptic Curve Discrete Logarithm Problem]
+Let $E$ be an elliptic curve over a finite field $\F_q$, and let $P$ be a point on $E$. Suppose we have a point $Q$
+on $E$ that is some scalar multiple of $P$, i.e.,
+$$[n]P = Q, \ \ \ \  n \in \NN. $$
+The \textbf{elliptic curve discrete logarithm problem} (ECDLP) is to determine the natural number $n$, given $E$, $P$
+and $Q$.
+\end{defn}
+
+On the other hand, the problem of determining $[n]P$ given $n$ and $P$ is not hard. One simple (to describe)
+way to do this is by using successive squaring.
+
+\begin{defn}[Successive Squaring for Elliptic Curves].
+Suppose we have an elliptic curve $E(K)$, a point $P \in E(K)$ and a nonnegative integer $n$.
+We can compute $[n]P$ recursively by calling SuccessiveSquare($n$, $P$). The analogue of
+squaring for elliptic curves is doubling.\\ \\
+SuccessiveSquare(nonnegative integer $m$, point on elliptic curve $Q$): \todo{Fix formatting here}
+\begin{enumerate}
+\item
+If m = 0, return $\OO$.
+\item
+If m = 1, return $Q$.
+\item
+If $n$ is even, return $[m/2](2Q)$ by calling SuccessiveSquare$(n / 2, 2Q)$.
+\item
+If $n$ is odd, return $[(m - 1)/2](2Q)$ by calling SuccessiveSquare( $(m-1) / 2, 2Q$) and add $Q$.
+\end{enumerate}
+This asymptotic run-time of this algorithm is $O(\log{n})$, a considerable improvement on
+brute force computation of $P + P + P + ...$ which takes $O(n)$ time. There are even faster
+algorithms for this computation that we do not describe here.
+\end{defn}
+
+

@@ -1,8 +1,10 @@
-\chapter{P-adic numbers}%
 \label{sec:p-adics}
+\section{The $p$-adics}
 
-\section{The p-adics}
-
+The $p$-adics $\Q_p$ are an alternate completion of the rationals $\Q$, with respect to the $p$-adic absolute value.
+\footnote{The standard completion of $\Q$, of course, is $\R$ with respect
+to the familiar absolute value} They will be useful in our discussion of solving ECDLP for curves of trace one.
+\todo{Introduce what p-adics look like here?}
 \begin{defn}
 For a rational number $a$ and a prime number $p$, separate out all factors of $p$ from $a$ and write: $$ a = p^r \dfrac{m}{n} $$ where $r$, $m$ and $n$ are integers, and $p$ does not divide $m$ or $n$. The exponent $r$ is called the $\textbf{p-adic ordinal}$ of $a$, denoted $\text{ord}_p(a)$.
 \end{defn}
@@ -25,6 +27,12 @@ The function $|.|_p$ is called the $\textbf{p-adic absolute value}$.
 The p-adic absolute value is a norm on $\Q$, and induces a metric $$d_p(a, \ b) = | a - b |_p$$ for $a, b \in \Q$.
 \end{prop}
 
+\begin{pf}
+\todo{Prove this!}
+\end{pf}
+
+\todo[inline, caption="p-adic comment"]{Explain why we don't really detailed proofs of Cauchy sequences etc}
+
 \begin{defn}
 A p-adic number $a$ is called a $\textbf{p-adic integer}$ if $ord_p(a) \ge 0$. The set of all p-adic integers is
 denoted $\Z_p$.
@@ -33,3 +41,39 @@ denoted $\Z_p$.
 \begin{rmk}
 A p-adic integer is always of the form $$a_0 + a_1p + a_2p^2 + ... ,$$ i.e., all powers of $p$ are non-negative.
 \end{rmk}
+
+\subsection{Computing lifts and reducing modulo $p$}
+Since $\Q_p$ is a field with characteristic 0, we can talk about elliptic curves over the $p$-adics, and all of the
+theory we built up in the previous sections applies.
+
+\todo{Describe computation of lifts}
+
+Going the other way is simple. We define a map from $E(\Q_p)$ to $\tilde{E}(\F_p)$
+by reducing a point modulo $p$, i.e, extracting its $a_0$ term.
+\todo{more on reduction mod p}
+
+\subsection{More about elliptic curves over $\Q_p$}
+
+\begin{defn}
+Let $E(\Q_p)$ be an elliptic curve. The group $E_1(\Q_p)$ is defined to be:
+$$ E_1(\Q_p) = \{ P \in E(\Q_p) \ | \ \tilde{P} = \OO  \}. $$
+In words, $E_1$ is the set of points on $E$ that reduce modulo $p$ to $\OO$.
+This leads naturally to the following proposition:
+\end{defn}
+
+\begin{prop}
+$$E(\Q_p) / E_1(\Q_p) \simeq E(\F_p).$$
+\end{prop}
+
+\begin{pf}
+Define a map $r: E(\Q_p) \to E(F_p)$ where $r(P) = \tilde{P}$. \todo{Prove this is a homomorphism} By definition,
+the kernel of this map is $E_1(\Q_p)$. The result follows from the First Isomorphism Theorem.
+\end{pf}
+
+\begin{defn}
+The subgroup $E_n$ (for $n \in N$) of $E(\Q_p)$  is defined:
+$$ E_n(\Q_p) = \{ P \in E(\Q_p) \ | \ \mathrm{ord}_p(x_P) \le -2n \} \cup \{ \OO \}, $$
+where $x_P$ is the x-coordinate of $P$.
+\end{defn}
+
+

@@ -85,6 +85,18 @@ class PrimePoint:
                 Q = Q + self
         return Q
 
+    def suc_sq(self, mult):
+        if mult == 0:
+            return self.inf()
+        elif mult == 1:
+            return self
+        elif mult % 2 == 0:
+            nextVal = self.double()
+            return nextVal.suc_sq(mult / 2)
+        elif mult % 2 == 1:
+            nextVal = self.double()
+            return self + nextVal.suc_sq( (mult - 1) / 2)
+
     # UNARY OPERATORS
 
     def __neg__(self):
@@ -127,11 +139,15 @@ class PrimePoint:
             multiples += [ self * i ]
         return multiples
 
+    def f(self, x, y):
+        return y ** 2 - x ** 3 - self.curve.a * x - self.curve.b
+
     def computeLift(self):
-        h1 = - ( y**2 - x ** 3 - self.a * x - self.b ) / ( (2 * y) * E.prime )
-        # WON'T WORK. NEED TO DIVIDE BY P before modding out!
+        f = - self.f(self.x.value, self.y.value)
+        f /= self.curve.prime
+        h1 = PrimeFieldElement(f, self.curve.prime) / PrimeFieldElement(2*self.y.value, self.curve.prime)
         newX = self.x
-        newY = [ self.y, h1 ]
+        newY = [ self.y, h1.value ]
         return newX, newY
         
             
